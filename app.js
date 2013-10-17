@@ -52,9 +52,9 @@ function update(main) {
     }
     urlTimeout = setTimeout(function() {
       if (history.replaceState) {
-        history.replaceState(null, null, window.location.protocol + '//' + window.location.pathname + '?' + mainEl.value);
+        history.replaceState(mainEl.value, 'HSLA', '?' + mainEl.value);
       }
-    }, 100);
+    }, 500);
   }
 
 }
