@@ -52,7 +52,7 @@ function update(main) {
     }
     urlTimeout = setTimeout(function() {
       if (history.replaceState) {
-        history.replaceState(mainEl.value, 'HSLA', '?' + mainEl.value);
+        history.replaceState(mainEl.value, 'HSLA', '?' + encodeURIComponent(mainEl.value));
       }
     }, 500);
   }
@@ -110,7 +110,7 @@ document.body.addEventListener('change', checkSliders);
 document.body.addEventListener('keydown', checkTicks);
 
 window.addEventListener('load', function() {
-  var base = window.location.search;
+  var base = decodeURIComponent(window.location.search);
   if (base.length > 1) {
     base = base.substring(1);
     if (guessSpace(base)) {
