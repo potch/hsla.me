@@ -8,6 +8,8 @@ valueInputs = Array.prototype.slice.apply(valueInputs);
 var c = new Color(mainEl.value);
 var activeSpace = 'hex';
 
+var previewEl = document.querySelector('.everything');
+
 var spaceRegex = {
   'hex' : /^#([a-fA-F0-9]{6})$|^#([a-fA-F0-9]{3})$/,
   'rgb' : /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d\.]+)\s*)?\)$/,
@@ -27,7 +29,7 @@ function guessSpace(string) {
 var urlTimeout;
 function update(main) {
 
-  document.body.style.backgroundColor = c.rgbString();
+  previewEl.style.backgroundColor = c.rgbString();
   if (c.luminosity() < .5) {
     document.body.classList.add('dark');
   } else {
