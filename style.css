@@ -20,6 +20,7 @@ article {
 }
 
 input[type="text"]{
+  font-family: monospace;
   font-size: 20px;
   text-align: center;
   border-radius: 8px;

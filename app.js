@@ -24,6 +24,7 @@ function guessSpace(string) {
   }
 }
 
+var urlTimeout;
 function update(main) {
 
   document.body.style.backgroundColor = c.rgbString();
@@ -47,6 +48,11 @@ function update(main) {
     } else {
       mainEl.value = c.keyword() || c.rgbString();
     }
+    urlTimeout = setTimeout(function() {
+      if (history.replaceState) {
+        history.replaceState(null, null, window.location.protocol + '//' + window.location.pathname + '?' + mainEl.value);
+      }
+    }, 100);
   }
 
 }
@@ -69,7 +75,7 @@ function checkTicks(e) {
      if (e.keyCode === 40) {
       e.preventDefault();
       tgt.value = parseInt(tgt.value, 10) - amount;
-      checkSliders(e)
+      checkSliders(e);
     }
  }
 }
@@ -101,4 +107,13 @@ document.body.addEventListener('change', checkSliders);
 
 document.body.addEventListener('keydown', checkTicks);
 
-window.addEventListener('load', checkMain);
+window.addEventListener('load', function() {
+  var base = window.location.search;
+  if (base.length > 1) {
+    base = base.substring(1);
+    if (guessSpace(base)) {
+      mainEl.value = base;
+    }
+  }
+  checkMain();
+});
