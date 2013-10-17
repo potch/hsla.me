@@ -6,9 +6,7 @@ var valueInputs = document.querySelectorAll('[data-val]');
 valueInputs = Array.prototype.slice.apply(valueInputs);
 
 var c = new Color(mainEl.value);
-var activeSpace;
-
-checkMain();
+var activeSpace = 'hex';
 
 var spaceRegex = {
   'hex' : /^#([a-fA-F0-9]{6})$|^#([a-fA-F0-9]{3})$/,
@@ -17,20 +15,6 @@ var spaceRegex = {
   'hsl' : /^hsla?\(\s*(\d+)\s*,\s*([\d\.]+)%\s*,\s*([\d\.]+)%\s*(?:,\s*([\d\.]+)\s*)?\)/,
   'keyword' : /(\D+)/
 };
-
-mainEl.addEventListener('keydown', function() {
-  setTimeout(checkMain, 0);
-});
-
-function checkMain() {
-  var val = mainEl.value;
-  var space = guessSpace(val);
-  if (space) {
-    c = new Color(mainEl.value);
-    activeSpace = space;
-    update(true);
-  }
-}
 
 function guessSpace(string) {
   for (var space in spaceRegex) {
@@ -59,7 +43,6 @@ function update(main) {
 
   if (!main) {
     if (activeSpace != 'keyword') {
-      document.title = activeSpace;
       mainEl.value = c[activeSpace + 'String']();
     } else {
       mainEl.value = c.keyword() || c.rgbString();
@@ -68,8 +51,38 @@ function update(main) {
 
 }
 
-document.body.addEventListener('input', checkSliders);
-document.body.addEventListener('change', checkSliders);
+function checkTicks(e) {
+  var tgt = e.target;
+  if (tgt.className === 'tick') {
+    var amount = 1;
+    if (tgt.getAttribute('data-val') === 'alpha') {
+      amount = .01;
+    }
+    if (e.shiftKey) {
+      amount *= 10;
+    }
+    if (e.keyCode === 38) {
+      e.preventDefault();
+      tgt.value = parseInt(tgt.value, 10) + amount;
+      checkSliders(e);
+    }
+     if (e.keyCode === 40) {
+      e.preventDefault();
+      tgt.value = parseInt(tgt.value, 10) - amount;
+      checkSliders(e)
+    }
+ }
+}
+
+function checkMain() {
+  var val = mainEl.value;
+  var space = guessSpace(val);
+  if (space) {
+    c = new Color(mainEl.value);
+    activeSpace = space;
+    update(true);
+  }
+}
 
 function checkSliders(e) {
   var val = e.target.getAttribute('data-val');
@@ -78,3 +91,14 @@ function checkSliders(e) {
     update();
   }
 }
+
+mainEl.addEventListener('keydown', function() {
+  setTimeout(checkMain, 0);
+});
+
+document.body.addEventListener('input', checkSliders);
+document.body.addEventListener('change', checkSliders);
+
+document.body.addEventListener('keydown', checkTicks);
+
+window.addEventListener('load', checkMain);

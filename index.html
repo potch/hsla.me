@@ -15,49 +15,63 @@
         <input type="text" id="main" class="big"></input>
       </section>
       <section class="one">
-        <input type="text" data-space="rgb" readonly>
-        <input type="text" data-space="rgba" readonly>
-        <input type="text" data-space="hsl" readonly>
-        <input type="text" data-space="hsla" readonly>
-        <input type="text" data-space="hex" readonly>
+        <input class="space" type="text" data-space="rgb" readonly>
+        <input class="space" type="text" data-space="rgba" readonly>
+        <input class="space" type="text" data-space="hsl" readonly>
+        <input class="space" type="text" data-space="hsla" readonly>
+        <input class="space" type="text" data-space="hex" readonly>
       </section>
       <section class="one">
-        <label>
+        <div class="slider">
           A <input type="range" data-val="alpha" min="0" max="1" step=".01">
-        </label>
+          <input class="tick" type="text" data-val="alpha">
+        </div>
         <br>
-        <label>
+        <div class="slider">
           R <input type="range" data-val="red" min="0" max="255">
-        </label>
-        <label>
+          <input class="tick" type="text" data-val="red">
+        </div>
+        <div class="slider">
           G <input type="range" data-val="green" min="0" max="255">
-        </label>
-        <label>
+          <input class="tick" type="text" data-val="green">
+        </div>
+        <div class="slider">
           B <input type="range" data-val="blue" min="0" max="255">
-        </label>
+          <input class="tick" type="text" data-val="blue">
+        </div>
         <br>
-        <label>
+        <div class="slider">
           H <input type="range" data-val="hue" min="0" max="360">
-        </label>
-        <label>
+          <input class="tick" type="text" data-val="hue">
+        </div>
+        <div class="slider">
           S <input type="range" data-val="saturation" min="0" max="100">
-        </label>
-        <label>
+          <input class="tick" type="text" data-val="saturation">
+        </div>
+        <div class="slider">
           L <input type="range" data-val="lightness" min="0" max="100">
-        </label>
+          <input class="tick" type="text" data-val="value">
+        </div>
         <br>
-        <label>
+        <div class="slider">
           C <input type="range" data-val="cyan" min="0" max="100">
-        </label>
-        <label>
-          M <input type="range" data-val="magenta" min="0" max="100">
-        </label>
-        <label>
-          Y <input type="range" data-val="yellow" min="0" max="100">
-        </label>
-        <label>
-          K <input type="range" data-val="black" min="0" max="100">
-        </label>
+          <input class="tick" type="text" data-val="cyan">
+        </div>
+        <div class="slider">
+          M
+          <input type="range" data-val="magenta" min="0" max="100">
+          <input class="tick" type="text" data-val="magenta">
+        </div>
+        <div class="slider">
+          Y
+          <input type="range" data-val="yellow" min="0" max="100">
+          <input class="tick" type="text" data-val="yellow">
+        </div>
+        <div class="slider">
+          K
+          <input type="range" data-val="black" min="0" max="100">
+          <input class="tick" type="text" data-val="black">
+        </div>
       </section>
     </article>
     <script src="color.js"></script>

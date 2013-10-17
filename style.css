@@ -24,10 +24,26 @@ input[type="text"]{
   text-align: center;
   border-radius: 8px;
   border: 0 none;
-  box-shadow: 0 1px 2px rgba(0,0,0) inset;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5) inset;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5) inset;
   padding: .5em 1em;
   width: 100%;
   margin-bottom: 1em;
+}
+
+input.tick {
+  width: 3em;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 80%;
+  font-size: .8em;
+  padding: 0;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.5) inset;
+  box-shadow: 0 1px 1px rgba(0,0,0,.5) inset;
 }
 
 input.big {
@@ -39,7 +55,7 @@ article {
   text-align: center;
 }
 
-label {
+.slider {
   width: 100%;
   display: block;
   text-align: left;
@@ -50,18 +66,16 @@ label {
 }
 
 input[type="range"] {
-  margin: auto 0;
+  margin: auto;
   position: absolute;
-  right: 0;
   top: 0;
   bottom: 0;
-  width: 90%;
+  right: 4em;
+  left: 2em;
+  width: -webkit-calc(100% - 7em);
+  width: -moz-calc(100% - 7em);
+  width: calc(100% - 7em);
   display: block;
-
-}
-
-.big {
-  width: ;
 }
 
 .one, .two {
@@ -75,4 +89,10 @@ input[type="range"] {
 
 .two {
   width: 100%;
+}
+
+@media (max-width: 640px) {
+  .one {
+    width: 100%;
+  }
 }
