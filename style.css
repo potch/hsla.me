@@ -8,12 +8,39 @@ body, html {
   font: normal 16px sans-serif;
   height: 100%;
   margin: 0;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAANklEQVRYhe3PsQ0AAAgCMP+/jZ/0CAaXkrCSMkm2aZsBAAAAAAAAeAe0A+0BAAAAAAAAgHfAAU5evtNhO/lnAAAAAElFTkSuQmCC);
   color: #000;
+}
+
+body, .swatches {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAANklEQVRYhe3PsQ0AAAgCMP+/jZ/0CAaXkrCSMkm2aZsBAAAAAAAAeAe0A+0BAAAAAAAAgHfAAU5evtNhO/lnAAAAAElFTkSuQmCC);
 }
 
 body.dark {
   color: #fff;
+}
+
+.save {
+  display: block;
+  width: 100%;
+  font: inherit;
+  background: #eee;
+  border-radius: 8px;
+  line-height: 1em;
+  border: 0;
+  padding: .5em 1em;
+  -webkit-box-shadow: 0 -1px 2px rgba(0,0,0,.5) inset;
+  box-shadow: 0 -1px 2px rgba(0,0,0,.5) inset;
+  cursor: pointer;
+}
+
+.save:active {
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5) inset;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5) inset;
+}
+
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 .everything {
@@ -22,10 +49,12 @@ body.dark {
   overflow: auto;
 }
 
-.everything:after {
+.everything:after, .swatches:after {
   content: '';
+  display: block;
   clear: both;
 }
+
 
 article {
   max-width: 700px;
@@ -33,7 +62,6 @@ article {
 }
 
 input[type="text"]{
-  font-family: monospace;
   font-size: 20px;
   text-align: center;
   border-radius: 8px;
@@ -122,8 +150,53 @@ input[type="range"] {
   width: 100%;
 }
 
+.swatches {
+  padding: 0;
+  border: 1em solid white;
+  border-radius: 8px;
+}
+
+.swatch {
+  display: block;
+  float: left;
+  width: 32px;
+  height: 32px;
+  border: 1px solid black;
+  margin: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.swatch .remove {
+  display: none;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background: red;
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.swatch:hover .remove {
+  display: block;
+}
+
+.dark .swatches {
+  border-color: #000;
+}
+
+
 @media (max-width: 640px) {
+  .big {
+    font-size: 20px;
+  }
   .one {
     width: 100%;
   }
 }
+

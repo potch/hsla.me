@@ -1,4 +1,5 @@
 
+var saved = [];
 var mainEl = document.querySelector('#main');
 var stringInputs = document.querySelectorAll('[data-space]');
 stringInputs = Array.prototype.slice.apply(stringInputs);
@@ -46,7 +47,11 @@ function update(main) {
 
   if (!main) {
     if (activeSpace != 'keyword') {
-      mainEl.value = c[activeSpace + 'String']();
+      if (activeSpace === 'hex' && c.alpha() < 1) {
+        mainEl.value = c.rgbString();
+      } else {
+        mainEl.value = c[activeSpace + 'String']();
+      }
     } else {
       mainEl.value = c.keyword() || c.rgbString();
     }
@@ -100,8 +105,58 @@ function checkSliders(e) {
   }
 }
 
+var swatchesEl = document.querySelector('.swatches');
+function renderSaved() {
+  while (swatchesEl.childNodes.length) {
+    swatchesEl.removeChild(swatchesEl.firstChild);
+  }
+  saved.forEach(function (c) {
+    var li = document.createElement('li');
+    li.className = 'swatch';
+    li.style.backgroundColor = c;
+    li.title = c;
+    var a = document.createElement('a');
+    a.className = 'remove';
+    a.href = '#';
+    a.innerHTML = '&times;';
+    li.appendChild(a);
+    swatchesEl.appendChild(li);
+  })
+}
+
+document.querySelector('.save').addEventListener('click', function(e) {
+  if (saved.indexOf(mainEl.value) > -1) {
+    return;
+  }
+  saved.push(mainEl.value);
+  try {
+    localStorage.setItem('saved', JSON.stringify(saved));
+  } catch (e) {
+  }
+  renderSaved();
+});
+
 mainEl.addEventListener('keydown', function() {
   setTimeout(checkMain, 0);
+});
+
+swatchesEl.addEventListener('click', function(e) {
+  var tgt = e.target;
+  var val = mainEl.value;
+  if (tgt.className === 'remove') {
+    saved.splice(saved.indexOf(val) - 1, 1);
+    try {
+      localStorage.setItem('saved', JSON.stringify(saved));
+    } catch (e) {
+    }
+    renderSaved();
+    e.stopPropagation();
+  }
+  if (tgt.className === 'swatch') {
+    console.log(tgt.className);
+    mainEl.value = tgt.getAttribute('title');
+    checkMain();
+  }
 });
 
 document.body.addEventListener('input', checkSliders);
@@ -111,11 +166,25 @@ document.body.addEventListener('keydown', checkTicks);
 
 window.addEventListener('load', function() {
   var base = decodeURIComponent(window.location.search);
+
+  try {
+    var savedData = localStorage.getItem('saved');
+    if (savedData) {
+      saved = JSON.parse(savedData);
+    }
+  } catch (e) {
+  }
+
+  renderSaved();
+
   if (base.length > 1) {
     base = base.substring(1);
     if (guessSpace(base)) {
       mainEl.value = base;
+      checkMain();
+      return;
     }
   }
+  mainEl.value = '#ffffff';
   checkMain();
 });

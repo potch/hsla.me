@@ -3,15 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
-    <title>HSLA - Online Color Converter</title>
+    <title>HSLA - Online Color Picker</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <div class="everything">
       <article>
-        <header class="two">
-          <h1></h1>
-        </header>
         <section class="two">
           <input type="text" id="main" class="big"></input>
         </section>
@@ -21,6 +18,7 @@
           <input class="space" type="text" data-space="hsl" readonly>
           <input class="space" type="text" data-space="hsla" readonly>
           <input class="space" type="text" data-space="hex" readonly>
+          <button class="save">Save Swatch</button>
         </section>
         <section class="one">
           <div class="slider">
@@ -81,6 +79,9 @@
             <input type="range" data-val="black" min="0" max="100">
             <input class="tick" type="text" data-val="black">
           </div>
+        </section>
+        <section class="two swatchbox">
+          <ul class="swatches"></ul>
         </section>
       </article>
     </div>
