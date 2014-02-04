@@ -30,7 +30,7 @@ var urlTimeout;
 function update(main) {
 
   previewEl.style.backgroundColor = c.rgbString();
-  if (c.luminosity() < .5) {
+  if (c.luminosity() < 0.5) {
     document.body.classList.add('dark');
   } else {
     document.body.classList.remove('dark');
@@ -68,7 +68,7 @@ function checkTicks(e) {
   if (tgt.className === 'tick') {
     var amount = 1;
     if (tgt.getAttribute('data-val') === 'alpha') {
-      amount = .01;
+      amount = 0.01;
     }
     if (e.shiftKey) {
       amount *= 10;
@@ -120,7 +120,7 @@ function renderSaved() {
     a.innerHTML = '&times;';
     li.appendChild(a);
     swatchesEl.appendChild(li);
-  })
+  });
 }
 
 document.querySelector('.save').addEventListener('click', function(e) {
@@ -141,10 +141,12 @@ mainEl.addEventListener('keydown', function() {
 
 swatchesEl.addEventListener('click', function(e) {
   var tgt = e.target;
-  var val = mainEl.value;
   if (tgt.className === 'remove') {
+    var val = tgt.parentNode.getAttribute('title');
     var loc = saved.indexOf(val);
-    saved.splice(loc, 1);
+    if (loc >= 0) {
+      saved.splice(loc, 1);
+    }
     try {
       localStorage.setItem('saved', JSON.stringify(saved));
     } catch (e) {
