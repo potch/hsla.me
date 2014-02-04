@@ -1,4 +1,3 @@
-
 var saved = [];
 var mainEl = document.querySelector('#main');
 var stringInputs = document.querySelectorAll('[data-space]');
@@ -144,7 +143,7 @@ swatchesEl.addEventListener('click', function(e) {
   var tgt = e.target;
   var val = mainEl.value;
   if (tgt.className === 'remove') {
-    saved.splice(saved.indexOf(val) - 1, 1);
+    saved.splice(saved.indexOf(val), 1);
     try {
       localStorage.setItem('saved', JSON.stringify(saved));
     } catch (e) {
