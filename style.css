@@ -172,14 +172,14 @@ input[type="range"] {
   position: absolute;
   top: -6px;
   right: -6px;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   background: red;
   border-radius: 8px;
   color: #fff;
   text-decoration: none;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 13px;
 }
 
 .swatch:hover .remove {
