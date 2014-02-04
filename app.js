@@ -143,7 +143,8 @@ swatchesEl.addEventListener('click', function(e) {
   var tgt = e.target;
   var val = mainEl.value;
   if (tgt.className === 'remove') {
-    saved.splice(saved.indexOf(val) + 1, 1);
+    var loc = saved.indexOf(val);
+    saved.splice(loc, 1);
     try {
       localStorage.setItem('saved', JSON.stringify(saved));
     } catch (e) {
