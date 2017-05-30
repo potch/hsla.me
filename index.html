@@ -9,10 +9,57 @@
   <body>
     <div class="everything">
       <article>
-        <section class="two">
+        <section class="main">
           <input type="text" id="main" class="big"></input>
         </section>
-        <section class="one">
+        <section class="sliders">
+
+          <label>A</label>
+          <input type="range" data-val="alpha" min="0" max="1" step=".01">
+          <input class="tick" type="text" data-val="alpha">
+
+          <label>R</label>
+          <input type="range" data-val="red" min="0" max="255">
+          <input class="tick" type="text" data-val="red">
+
+          <label>G</label>
+          <input type="range" data-val="green" min="0" max="255">
+          <input class="tick" type="text" data-val="green">
+
+          <label>B</label>
+          <input type="range" data-val="blue" min="0" max="255">
+          <input class="tick" type="text" data-val="blue">
+
+          <label>H</label>
+          <input type="range" data-val="hue" min="0" max="360">
+          <input class="tick" type="text" data-val="hue">
+
+          <label>S</label>
+          <input type="range" data-val="saturation" min="0" max="100">
+          <input class="tick" type="text" data-val="saturation">
+
+          <label>L</label>
+          <input type="range" data-val="lightness" min="0" max="100">
+          <input class="tick" type="text" data-val="value">
+
+          <label>C</label>
+          <input type="range" data-val="cyan" min="0" max="100">
+          <input class="tick" type="text" data-val="cyan">
+
+          <label>M</label>
+          <input type="range" data-val="magenta" min="0" max="100">
+          <input class="tick" type="text" data-val="magenta">
+
+          <label>Y</label>
+          <input type="range" data-val="yellow" min="0" max="100">
+          <input class="tick" type="text" data-val="yellow">
+
+          <label>K</label>
+          <input type="range" data-val="black" min="0" max="100">
+          <input class="tick" type="text" data-val="black">
+        </section>
+
+        <section class="conversions">
           <input class="space" type="text" data-space="rgb" readonly>
           <input class="space" type="text" data-space="rgba" readonly>
           <input class="space" type="text" data-space="hsl" readonly>
@@ -20,67 +67,8 @@
           <input class="space" type="text" data-space="hex" readonly>
           <button class="save">Save Swatch</button>
         </section>
-        <section class="one">
-          <div class="slider">
-            <b>A</b>
-            <input type="range" data-val="alpha" min="0" max="1" step=".01">
-            <input class="tick" type="text" data-val="alpha">
-          </div>
-          <br>
-          <div class="slider">
-            <b>R</b>
-            <input type="range" data-val="red" min="0" max="255">
-            <input class="tick" type="text" data-val="red">
-          </div>
-          <div class="slider">
-            <b>G</b>
-            <input type="range" data-val="green" min="0" max="255">
-            <input class="tick" type="text" data-val="green">
-          </div>
-          <div class="slider">
-            <b>B</b>
-            <input type="range" data-val="blue" min="0" max="255">
-            <input class="tick" type="text" data-val="blue">
-          </div>
-          <br>
-          <div class="slider">
-            <b>H</b>
-            <input type="range" data-val="hue" min="0" max="360">
-            <input class="tick" type="text" data-val="hue">
-          </div>
-          <div class="slider">
-            <b>S</b>
-            <input type="range" data-val="saturation" min="0" max="100">
-            <input class="tick" type="text" data-val="saturation">
-          </div>
-          <div class="slider">
-            <b>L</b>
-            <input type="range" data-val="lightness" min="0" max="100">
-            <input class="tick" type="text" data-val="value">
-          </div>
-          <br>
-          <div class="slider">
-            <b>C</b>
-            <input type="range" data-val="cyan" min="0" max="100">
-            <input class="tick" type="text" data-val="cyan">
-          </div>
-          <div class="slider">
-            <b>M</b>
-            <input type="range" data-val="magenta" min="0" max="100">
-            <input class="tick" type="text" data-val="magenta">
-          </div>
-          <div class="slider">
-            <b>Y</b>
-            <input type="range" data-val="yellow" min="0" max="100">
-            <input class="tick" type="text" data-val="yellow">
-          </div>
-          <div class="slider">
-            <b>K</b>
-            <input type="range" data-val="black" min="0" max="100">
-            <input class="tick" type="text" data-val="black">
-          </div>
-        </section>
-        <section class="two swatchbox">
+
+        <section class="swatchbox">
           <ul class="swatches"></ul>
         </section>
       </article>

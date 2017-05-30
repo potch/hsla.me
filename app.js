@@ -27,6 +27,7 @@ function guessSpace(string) {
 }
 
 var urlTimeout;
+
 function update(main) {
 
   previewEl.style.backgroundColor = c.rgbString();
@@ -97,6 +98,10 @@ function checkMain() {
 }
 
 function checkSliders(e) {
+  if (e.target.id === 'picker') {
+    c = new Color(e.target.value);
+    update();
+  }
   var val = e.target.getAttribute('data-val');
   if (val) {
     c[val](e.target.value);
@@ -135,7 +140,7 @@ document.querySelector('.save').addEventListener('click', function(e) {
   renderSaved();
 });
 
-mainEl.addEventListener('keydown', function() {
+mainEl.addEventListener('keyup', function() {
   setTimeout(checkMain, 0);
 });
 
@@ -155,7 +160,6 @@ swatchesEl.addEventListener('click', function(e) {
     e.stopPropagation();
   }
   if (tgt.className === 'swatch') {
-    console.log(tgt.className);
     mainEl.value = tgt.getAttribute('title');
     checkMain();
   }
